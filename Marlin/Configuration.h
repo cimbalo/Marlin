@@ -486,7 +486,7 @@
  * Override with M92
  *                                      X, Y, Z, E0 [, E1[, E2[, E3]]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 4000, 500 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   {160,160,5120,400 * 16 / 21}  // TODO: fix extruder steps 
 
 /**
  * Default Max Feed Rate (mm/s)
