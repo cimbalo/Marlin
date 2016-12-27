@@ -206,7 +206,7 @@
 
 /**
  * --NORMAL IS 4.7kohm PULLUP!-- 1kohm pullup can be used on hotend sensor, using correct resistor and table
- * 
+ *
  * Temperature sensors available:
  *
  *    -3 : thermocouple with MAX31855 (only for sensor 0)
@@ -231,13 +231,13 @@
  *    60 : 100k Maker's Tool Works Kapton Bed Thermistor beta=3950
  *    66 : 4.7M High Temperature thermistor from Dyze Design
  *    70 : the 100K thermistor found in the bq Hephestos 2
- * 
+ *
  *       1k ohm pullup tables - This is atypical, and requires changing out the 4.7k pullup for 1k.
  *                              (but gives greater accuracy and more stable PID)
  *    51 : 100k thermistor - EPCOS (1k pullup)
  *    52 : 200k thermistor - ATC Semitec 204GT-2 (1k pullup)
  *    55 : 100k thermistor - ATC Semitec 104GT-2 (Used in ParCan & J-Head) (1k pullup)
- * 
+ *
  *  1047 : Pt1000 with 4k7 pullup
  *  1010 : Pt1000 with 1k pullup (non standard)
  *   147 : Pt100 with 4k7 pullup
@@ -312,11 +312,16 @@
                                   // is more than PID_FUNCTIONAL_RANGE then the PID will be shut off and the heater will be set to min/max.
   #define K1 0.95 //smoothing factor within the PID
 
+  // PID values for E3D v6 clone HotEnd
+  #define  DEFAULT_Kp 21.76
+  #define  DEFAULT_Ki 1.88
+  #define  DEFAULT_Kd 63.11
+
   // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
   // Ultimaker
-  #define  DEFAULT_Kp 22.2
-  #define  DEFAULT_Ki 1.08
-  #define  DEFAULT_Kd 114
+  // #define  DEFAULT_Kp 22.2
+  // #define  DEFAULT_Ki 1.08
+  // #define  DEFAULT_Kd 114
 
   // MakerGear
   //#define  DEFAULT_Kp 7.0
@@ -486,7 +491,7 @@
  * Override with M92
  *                                      X, Y, Z, E0 [, E1[, E2[, E3]]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   {160,160,5120,400 * 16 / 33,8}  // TODO: fix extruder steps
+#define DEFAULT_AXIS_STEPS_PER_UNIT   {160/2,160/2,5120/2,400 * 16 / 33,8/2}  // TODO: fix extruder steps
 
 /**
  * Default Max Feed Rate (mm/s)
@@ -501,7 +506,7 @@
  * Override with M201
  *                                      X, Y, Z, E0 [, E1[, E2[, E3]]]
  */
-#define DEFAULT_MAX_ACCELERATION      { 3000, 3000, 100, 10000 }
+#define DEFAULT_MAX_ACCELERATION      { 2000, 2000, 100, 10000 }
 
 /**
  * Default Acceleration (change/s) change = mm/s
@@ -826,10 +831,10 @@
     // The height can be set with M420 Z<height>
     #define ENABLE_LEVELING_FADE_HEIGHT
 
-    // 
+    //
     // Experimental Subdivision of the grid by Catmull-Rom method.
     // Synthesizes intermediate points to produce a more detailed mesh.
-    // 
+    //
     //#define ABL_BILINEAR_SUBDIVISION
     #if ENABLED(ABL_BILINEAR_SUBDIVISION)
       // Number of subdivisions between probe points
